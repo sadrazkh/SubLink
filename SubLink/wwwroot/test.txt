@@ -1,0 +1,4 @@
+trojan://0szI4jxthC@ztl1.irnetfree.ga:443?security=tls&sni=lond.irnetfree.cf&type=ws&path=/protr&host=lond.irnetfree.cf#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-Sadal
+trojan://uesThOMoml@prosrv400.irnetfree.info:35634?security=tls&type=tcp#Sadra%20Pro%20400%20Troj
+trojan://0lKYuzWcph@irc2.irnetfree.ml:443?security=tls&sni=sps31-sadra.shopely.xyz&type=ws&path=/chat&host=spain31.shopely.xyz#Pro%2031%20%F0%9F%87%AA%F0%9F%87%B8-Sadra
+trojan://0szI4jxthC@irc2.irnetfree.ml:443?security=tls&sni=lond.irnetfree.cf&type=ws&path=/protr&host=lond.irnetfree.cf#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-Sadal
