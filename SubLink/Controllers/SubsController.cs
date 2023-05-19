@@ -65,10 +65,10 @@ namespace SubLink.Controllers
                 }
             }
 
-            return res.ToString();
+            //return res.ToString();
 
-            //var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
-            //return System.Convert.ToBase64String(plainTextBytes);
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
+            return System.Convert.ToBase64String(plainTextBytes);
         }
 
 
