@@ -18,19 +18,26 @@ namespace SubLink.Controllers
         }
 
 
-        [HttpGet("{userId}/{netOperator}")]
-        public async Task<string> Get(Guid userId, string netOperator)
+        [HttpGet()]
+        public async Task<string> Get()
         {
             //Todo Log User
 
-            var user = await _dbContext.Users.FindAsync(userId);
-            var ips = await _dbContext.InternetServiceProviders.Where(c => c.Code == netOperator)
-                .SelectMany(c => c.CleanIps)
-                .Where(c => c.Active)
-                .Select(s => s.IP)
-                .OrderBy(c => Guid.NewGuid())
-                .Take(10).ToListAsync();
+            //var user = await _dbContext.Users.FindAsync(userId);
+            //var ips = await _dbContext.InternetServiceProviders.Where(c => c.Code == netOperator)
+            //    .SelectMany(c => c.CleanIps)
+            //    .Where(c => c.Active)
+            //    .Select(s => s.IP)
+            //    .OrderBy(c => Guid.NewGuid())
+            //    .Take(10).ToListAsync();
 
+            var netOperator = " IRC";
+
+            var ips = ConfigGenerator.GetIpPerInternetOperator("irc");
+
+            var user = new {Name = "Sadra", Password = "0lKYuzWcph", Server = "Spain31" };
+
+            var domain = "shopely.xyz";
 
             StringBuilder res = new StringBuilder();
             foreach (var ip in ips)
@@ -38,26 +45,30 @@ namespace SubLink.Controllers
                 switch (user.Server)
                 {
                     case "London":
-                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, "irnetfree.cf"));
+                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "Sweden76":
-                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, "irnetfree.cf"));
+                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
                         break;
                     case "Spain31":
-                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, "irnetfree.cf"));
+                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
                         break;
                     case "USA89":
-                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, "irnetfree.cf"));
+                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
                         break;
                     case "France41":
-                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, "irnetfree.cf"));
+                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
                         break;
-                    default: res.Append("\n");
+                    default:
+                        res.Append("\n");
                         break;
                 }
             }
 
             return res.ToString();
+
+            //var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
+            //return System.Convert.ToBase64String(plainTextBytes);
         }
 
 
@@ -87,21 +98,88 @@ namespace SubLink.Controllers
                 case "irc":
                     return new List<string>()
                     {
-                        "80.94.83.141",
-                        "89.116.250.22",
-                        "89.116.250.90",
-                        "80.94.83.121",
-                        "45.76.86.197",
-                        "45.63.117.116",
-                        "192.248.191.3",
-                        "80.240.18.58",
-                        "80.240.28.19",
-                        "45.76.81.159",
+                        "95.179.241.60",
+                        "95.179.243.130",
+                        "95.179.243.184",
+                        "95.179.244.214",
+                        "95.179.245.139",
+                        "95.179.246.202",
+                        "95.179.250.81",
+                        "95.179.255.134",
+                        "95.179.255.199",
+                        "199.247.19.174",
+                        "45.76.83.197",
+                        "45.76.85.173",
+                        "45.76.92.26",
+                        "45.76.92.71",
+                        "95.179.168.124",
+                        "95.179.169.223",
+                        "45.63.119.169",
+                        "199.247.0.16",
+                        "199.247.0.116",
+                        "199.247.0.160",
+                        "199.247.0.186",
+                        "199.247.0.226",
+                        "199.247.0.236",
+                        "199.247.2.131",
+                        "199.247.2.255",
+                        "199.247.4.212",
+                        "199.247.5.61",
+                        "199.247.9.190",
+                        "199.247.17.2",
+                        "199.247.20.252",
+                        "199.247.21.147",
+                        "199.247.22.54",
+                        "199.247.22.44",
+                        "199.247.23.172",
+                        "199.247.28.164",
+                        "136.244.81.173",
+                        "136.244.86.248",
+                        "136.244.87.9",
+                        "136.244.88.16",
+                        "95.179.202.57",
+                        "95.179.240.154",
+                        "95.179.241.150",
+                        "95.179.244.134",
+                        "95.179.248.77",
+                        "95.179.250.43",
+                        "95.179.250.86",
+                        "95.179.251.153",
+                        "95.179.254.20",
+                        "45.76.91.228",
+                        "45.63.119.55",
+                        "45.63.119.118",
+                        "199.247.5.9",
+                        "199.247.5.70",
+                        "95.179.243.13",
+                        "95.179.247.71",
+                        "95.179.247.168",
+                        "95.179.250.152",
+                        "95.179.252.143",
+                        "95.179.254.184",
+                        "45.76.85.135",
                         "45.76.86.53",
-                        "45.76.85.208",
-                        "45.76.81.18",
-                        "170.114.45.224",
-                        "199.247.19.103"
+                        "45.76.86.197",
+                        "45.76.89.166",
+                        "95.179.168.130",
+                        "95.179.169.117",
+                        "45.63.116.105",
+                        "45.63.117.136",
+                        "45.63.119.209",
+                        "199.247.6.98",
+                        "199.247.22.126",
+                        "136.244.87.193",
+                        "95.179.190.154",
+                        "95.179.135.195",
+                        "95.179.255.3",
+                        "45.63.116.249",
+                        "45.63.119.147",
+                        "95.179.242.87",
+                        "95.179.242.247",
+                        "95.179.242.241",
+                        "95.179.246.191",
+                        "95.179.248.215",
+                        "95.179.253.40"
                     };
                 case "mkb":
                     return new List<string>()
@@ -134,7 +212,7 @@ namespace SubLink.Controllers
 
         public static string GetSpain31Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}#Pro%2031%20%F0%9F%87%AA%F0%9F%87%B8-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}#Pro 31 🇪🇸-{name}\n";
 
         public static string GetFrance41Config(string password, string name, string sni, string ip, string domain)
             =>
