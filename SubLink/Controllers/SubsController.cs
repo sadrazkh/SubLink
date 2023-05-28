@@ -18,8 +18,9 @@ namespace SubLink.Controllers
         }
 
 
-        [HttpGet()]
-        public async Task<string> Get()
+        [HttpGet("{name}")]
+
+        public async Task<string> Get(string name)
         {
             //Todo Log User
 
@@ -33,7 +34,7 @@ namespace SubLink.Controllers
 
             var netOperator = " IRC";
 
-            var ips = ConfigGenerator.GetIpPerInternetOperator("irc");
+            var ips = ConfigGenerator.GetIpPerInternetOperator(name);
 
             var user = new {Name = "Sadra", Password = "0lKYuzWcph", Server = "Spain31" };
 
@@ -95,7 +96,7 @@ namespace SubLink.Controllers
                         "45.159.216.87"
                     };
 
-                case "irc":
+                case "irc1":
                     return new List<string>()
                     {
                         "95.179.241.60",
@@ -181,6 +182,43 @@ namespace SubLink.Controllers
                         "95.179.248.215",
                         "95.179.253.40"
                     };
+                case "irc2":
+                    return new List<string>()
+                    {
+                        "95.179.244.42",
+                        "95.179.244.134",
+                        "95.179.244.231",
+                        "95.179.245.139",
+                        "95.179.249.171",
+                        "95.179.250.249",
+                        "199.247.19.88",
+                        "45.76.83.81",
+                        "45.76.85.225",
+                        "45.76.89.54",
+                        "45.76.89.134",
+                        "95.179.168.196",
+                        "95.179.169.22",
+                        "45.63.116.158",
+                        "199.247.0.123",
+                        "199.247.0.116",
+                        "199.247.5.158",
+                        "199.247.11.145",
+                        "199.247.17.167",
+                        "199.247.19.88",
+                        "199.247.20.44",
+                        "199.247.21.114",
+                        "199.247.21.147",
+                        "199.247.22.62",
+                        "199.247.22.126",
+                        "199.247.23.38",
+                        "136.244.84.224",
+                        "136.244.86.50",
+                        "136.244.87.27",
+                        "136.244.87.116",
+                        "136.244.87.178",
+                        "136.244.89.149",
+                        "95.179.186.177",
+                    };
                 case "mkb":
                     return new List<string>()
                     {
@@ -196,7 +234,7 @@ namespace SubLink.Controllers
                     return GetIpPerInternetOperator("irc");
                     break;
 
-                default: return GetIpPerInternetOperator("irc");
+                default: return GetIpPerInternetOperator("mkb");
             }
 
         }
