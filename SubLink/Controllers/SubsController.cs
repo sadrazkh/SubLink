@@ -95,7 +95,14 @@ namespace SubLink.Controllers
                         "45.159.216.12",
                         "45.159.216.87"
                     };
-
+                case "irc":
+                    return new List<string>()
+                    {
+                        "irc.irnetfree.ml",
+                        "irc1.irnetfree.ml",
+                        "irc2.irnetfree.ml",
+                        "irc3.irnetfree.ml",
+                    };
                 case "irc1":
                     return new List<string>()
                     {
