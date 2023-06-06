@@ -43,6 +43,7 @@ namespace SubLink.Controllers
             {
                 user = new { Name = "Sadra", Password = "vl7FhIWbzV", Server = "Italy10" };
                 domain = "sadilo.shop";
+                netOperator = " MCI";
             }
 
 
@@ -100,10 +101,10 @@ namespace SubLink.Controllers
                 case "mci":
                     return new List<string>()
                     {
-                        "45.85.119.5", "45.159.216.12",
-                        "45.159.216.87", "203.23.103.31", "203.23.106.134", "104.31.16.6", "104.31.16.4",
-                        "104.31.16.11", "104.31.16.7", "104.31.16.28", "104.31.16.27", "104.31.16.3",
-                        "104.31.16.26", "104.31.16.14", "104.31.16.13", "104.31.16.17", "104.31.16.16",
+                        "45.85.119.5","45.159.216.12",
+                        "45.159.216.87","203.23.103.31","203.23.106.134","104.31.16.6","104.31.16.4",
+                        "104.31.16.11","104.31.16.7","104.31.16.28","104.31.16.27","104.31.16.3",
+                        "104.31.16.26","104.31.16.14","104.31.16.13", "104.31.16.17", "104.31.16.16",
                         "104.31.16.29", "104.31.16.30", "104.31.16.12", "104.31.16.5", "104.31.16.25", 
                         "104.31.16.20", "104.31.16.32", "104.31.16.31", "104.31.16.1", "104.31.16.18",
                         "104.31.16.22", "104.31.16.36", "104.31.16.43", "104.31.16.45", "104.31.16.42", "104.31.16.38",
@@ -359,7 +360,7 @@ namespace SubLink.Controllers
 
         public static string GetItaly10Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}";
+                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}\n";
     }
 
 }
