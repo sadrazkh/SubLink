@@ -136,6 +136,9 @@ namespace SubLink.Controllers
                         "irc1.irnetfree.info",
                         "irc2.irnetfree.info",
                         "irc3.irnetfree.info",
+                        "irc.stb.irnetfree.info",
+                        "irc1.stb.irnetfree.info",
+                        "irc2.stb.irnetfree.info",
                     };
                 case "irc1":
                     return new List<string>()
