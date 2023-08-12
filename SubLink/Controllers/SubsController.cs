@@ -19,7 +19,6 @@ namespace SubLink.Controllers
 
 
         [HttpGet("{name}")]
-
         public async Task<string> Get(string name)
         {
             //Todo Log User
@@ -69,6 +68,63 @@ namespace SubLink.Controllers
                         break;
                     case "Italy10":
                         res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        break;
+                    default:
+                        res.Append("\n");
+                        break;
+                }
+            }
+
+            //return res.ToString();
+
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+
+        [HttpGet("{internetOperator}/{name}/{password}/{serverName}/{count}")]
+        public async Task<string> Get(string internetOperator, string name, string password, string serverName, int count)
+        {
+            //Todo Log User
+
+            //var user = await _dbContext.Users.FindAsync(userId);
+            //var ips = await _dbContext.InternetServiceProviders.Where(c => c.Code == netOperator)
+            //    .SelectMany(c => c.CleanIps)
+            //    .Where(c => c.Active)
+            //    .Select(s => s.IP)
+            //    .OrderBy(c => Guid.NewGuid())
+            //    .Take(10).ToListAsync();
+
+            //var netOperator = " IRC";
+
+            var ips = ConfigGenerator.GetIpPerInternetOperator(internetOperator).OrderBy(c => Guid.NewGuid()).Take(count).ToList();
+
+            var user = new { Name = name, Password = password, Server = serverName };
+            var domain = "irnetfree.xyz";
+
+
+            StringBuilder res = new StringBuilder();
+            foreach (var ip in ips)
+            {
+                switch (user.Server)
+                {
+                    case "London":
+                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{internetOperator}", "sadaltest", ip, domain));
+                        break;
+                    case "Sweden76":
+                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        break;
+                    case "Spain31":
+                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        break;
+                    case "USA89":
+                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        break;
+                    case "France41":
+                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain));
+                        break;
+                    case "Italy10":
+                        res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{internetOperator}", "sadaltest", ip, domain));
                         break;
                     default:
                         res.Append("\n");
