@@ -346,6 +346,8 @@ namespace SubLink.Controllers
                 case "irc4":
                     return new List<string>()
                     {
+                        "95.179.232.218",
+                        "45.77.56.49",
                         "136.244.94.51",
                         "136.244.112.182",
                         "45.14.174.144",
