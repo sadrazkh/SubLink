@@ -82,8 +82,8 @@ namespace SubLink.Controllers
         }
 
 
-        [HttpGet("{internetOperator}/{name}/{password}/{serverName}/{count}")]
-        public async Task<string> Get(string internetOperator, string name, string password, string serverName, int count)
+        [HttpGet("{internetOperator}/{name}/{password}/{serverName}/{count}/{domain}")]
+        public async Task<string> Get(string internetOperator, string name, string password, string serverName, int count, string domain)
         {
             //Todo Log User
 
@@ -100,7 +100,7 @@ namespace SubLink.Controllers
             var ips = ConfigGenerator.GetIpPerInternetOperator(internetOperator).OrderBy(c => Guid.NewGuid()).Take(count).ToList();
 
             var user = new { Name = name, Password = password, Server = serverName };
-            var domain = "irnetfree.xyz";
+
 
 
             StringBuilder res = new StringBuilder();
@@ -109,7 +109,7 @@ namespace SubLink.Controllers
                 switch (user.Server)
                 {
                     case "London":
-                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{internetOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain));
                         break;
                     case "Sweden76":
                         res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
