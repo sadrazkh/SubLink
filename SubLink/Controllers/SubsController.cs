@@ -77,7 +77,7 @@ namespace SubLink.Controllers
 
             //return res.ToString();
 
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString().Replace("#", "&fragment=1,1,1#"));
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
