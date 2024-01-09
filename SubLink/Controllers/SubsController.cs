@@ -55,16 +55,16 @@ namespace SubLink.Controllers
                         res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "Sweden76":
-                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "Spain31":
-                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "USA89":
-                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "France41":
-                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
                         break;
                     case "Italy10":
                         res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
