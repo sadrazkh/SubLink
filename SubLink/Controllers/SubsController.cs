@@ -75,9 +75,10 @@ namespace SubLink.Controllers
                 }
             }
 
-            //return res.ToString();
 
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString().Replace("#", "&fragment=1,1,1#"));
+            var config = res.ToString();
+
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(res.ToString());
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
@@ -1129,27 +1130,27 @@ namespace SubLink.Controllers
 
         public static string GetLondonConfig(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=lndgb-{sni}.{domain}&type=ws&path=/protr&host=lond.{domain}#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=lndgb-{sni}.{domain}&type=ws&path=/protr&host=lond.{domain}&fragment=1,1,1#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-{name}\n";
 
         public static string GetSweden76Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=swd76-{sni}.{domain}&type=ws&path=/chat&host=sweden76.{domain}#Pro%2076%20%F0%9F%87%B8%F0%9F%87%AA-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=swd76-{sni}.{domain}&type=ws&path=/chat&host=sweden76.{domain}&fragment=1,1,1#Pro%2076%20%F0%9F%87%B8%F0%9F%87%AA-{name}\n";
 
         public static string GetSpain31Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}#Pro 31 🇪🇸-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}&fragment=1,1,1#Pro 31 🇪🇸-{name}\n";
 
         public static string GetFrance41Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=fr41-{sni}.{domain}&type=ws&path=/chat&host=france41.{domain}#Trojan%20Server%2041%20%F0%9F%87%AB%F0%9F%87%B7-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=fr41-{sni}.{domain}&type=ws&path=/chat&host=france41.{domain}&fragment=1,1,1#Trojan%20Server%2041%20%F0%9F%87%AB%F0%9F%87%B7-{name}\n";
 
         public static string GetUSA89Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=hs89-{sni}.{domain}&type=ws&path=/chat&host=hillsboro.{domain}#Trojan%20Server%2089%20%F0%9F%87%BA%F0%9F%87%B8-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=hs89-{sni}.{domain}&type=ws&path=/chat&host=hillsboro.{domain}&fragment=1,1,1#Trojan%20Server%2089%20%F0%9F%87%BA%F0%9F%87%B8-{name}\n";
 
         public static string GetItaly10Config(string password, string name, string sni, string ip, string domain)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}&fragment=1,1,1#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}\n";
     }
 
 }
