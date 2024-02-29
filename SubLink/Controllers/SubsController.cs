@@ -27,7 +27,7 @@ namespace SubLink.Controllers
 
             if (fragment != null)
             {
-                fragment = fragment.Replace('.', '1');
+                fragment = fragment.Replace('.', ',');
                 fragmentParam = fragment;
             }
             //var user = await _dbContext.Users.FindAsync(userId);
