@@ -83,10 +83,17 @@ namespace SubLink.Controllers
         }
 
 
-        [HttpGet("{internetOperator}/{name}/{password}/{serverName}/{count}/{domain}")]
-        public async Task<string> Get(string internetOperator, string name, string password, string serverName, int count, string domain)
+        [HttpGet("{internetOperator}/{name}/{password}/{serverName}/{count}/{domain}/{fragment?}")]
+        public async Task<string> Get(string internetOperator, string name, string password, string serverName, int count, string domain, string? fragment)
         {
             //Todo Log User
+            var fragmentParam = "1,0,1";
+
+            if (fragment != null)
+            {
+                fragment = fragment.Replace('.', '1');
+                fragmentParam = fragment;
+            }
 
             //var user = await _dbContext.Users.FindAsync(userId);
             //var ips = await _dbContext.InternetServiceProviders.Where(c => c.Code == netOperator)
@@ -110,22 +117,22 @@ namespace SubLink.Controllers
                 switch (user.Server)
                 {
                     case "London":
-                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain));
+                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain, fragmentParam));
                         break;
                     case "Sweden76":
-                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain, fragmentParam));
                         break;
                     case "Spain31":
-                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain, fragmentParam));
                         break;
                     case "USA89":
-                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain));
+                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{internetOperator}", "sadal", ip, domain , fragmentParam));
                         break;
                     case "France41":
-                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain));
+                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{internetOperator}", $"{user.Name}Dkg5", ip, domain , fragmentParam));
                         break;
                     case "Italy10":
-                        res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{internetOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{internetOperator}", "sadaltest", ip, domain , fragmentParam));
                         break;
                     default:
                         res.Append("\n");
@@ -1128,29 +1135,29 @@ namespace SubLink.Controllers
         }
 
 
-        public static string GetLondonConfig(string password, string name, string sni, string ip, string domain)
+        public static string GetLondonConfig(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=lndgb-{sni}.{domain}&type=ws&path=/protr&host=lond.{domain}&fragment=1,0,1#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=lndgb-{sni}.{domain}&type=ws&path=/protr&host=lond.{domain}&fragment={fragmentParam}#Server%20Trojan%20GB%20%F0%9F%87%AC%F0%9F%87%A7-{name}\n";
 
-        public static string GetSweden76Config(string password, string name, string sni, string ip, string domain)
+        public static string GetSweden76Config(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=swd76-{sni}.{domain}&type=ws&path=/chat&host=sweden76.{domain}&fragment=1,0,1#Pro%2076%20%F0%9F%87%B8%F0%9F%87%AA-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=swd76-{sni}.{domain}&type=ws&path=/chat&host=sweden76.{domain}&fragment={fragmentParam}#Pro%2076%20%F0%9F%87%B8%F0%9F%87%AA-{name}\n";
 
-        public static string GetSpain31Config(string password, string name, string sni, string ip, string domain)
+        public static string GetSpain31Config(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}&fragment=1,0,1#Pro 31 🇪🇸-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=sps31-{sni}.{domain}&type=ws&path=/chat&host=spain31.{domain}&fragment={fragmentParam}#Pro 31 🇪🇸-{name}\n";
 
-        public static string GetFrance41Config(string password, string name, string sni, string ip, string domain)
+        public static string GetFrance41Config(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=fr41-{sni}.{domain}&type=ws&path=/chat&host=france41.{domain}&fragment=1,0,1#Trojan%20Server%2041%20%F0%9F%87%AB%F0%9F%87%B7-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=fr41-{sni}.{domain}&type=ws&path=/chat&host=france41.{domain}&fragment={fragmentParam}#Trojan%20Server%2041%20%F0%9F%87%AB%F0%9F%87%B7-{name}\n";
 
-        public static string GetUSA89Config(string password, string name, string sni, string ip, string domain)
+        public static string GetUSA89Config(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=hs89-{sni}.{domain}&type=ws&path=/chat&host=hillsboro.{domain}&fragment=1,0,1#Trojan%20Server%2089%20%F0%9F%87%BA%F0%9F%87%B8-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=hs89-{sni}.{domain}&type=ws&path=/chat&host=hillsboro.{domain}&fragment={fragmentParam}#Trojan%20Server%2089%20%F0%9F%87%BA%F0%9F%87%B8-{name}\n";
 
-        public static string GetItaly10Config(string password, string name, string sni, string ip, string domain)
+        public static string GetItaly10Config(string password, string name, string sni, string ip, string domain, string fragmentParam)
             =>
-                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}&fragment=1,0,1#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}\n";
+                $"trojan://{password}@{ip}:443?security=tls&sni=italy10-{sni}.{domain}&type=ws&path=/chat&host=italy10.{domain}&fragment={fragmentParam}#Pro%2010%20%F0%9F%87%AE%F0%9F%87%B9-{name}\n";
     }
 
 }
