@@ -18,11 +18,18 @@ namespace SubLink.Controllers
         }
 
 
-        [HttpGet("{name}")]
-        public async Task<string> Get(string name)
+        [HttpGet("{name}/{fragment?}")]
+        public async Task<string> Get(string name, string? fragment)
         {
             //Todo Log User
 
+            var fragmentParam = "1,0,1";
+
+            if (fragment != null)
+            {
+                fragment = fragment.Replace('.', '1');
+                fragmentParam = fragment;
+            }
             //var user = await _dbContext.Users.FindAsync(userId);
             //var ips = await _dbContext.InternetServiceProviders.Where(c => c.Code == netOperator)
             //    .SelectMany(c => c.CleanIps)
@@ -52,22 +59,22 @@ namespace SubLink.Controllers
                 switch (user.Server)
                 {
                     case "London":
-                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetLondonConfig(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain, fragmentParam:fragmentParam));
                         break;
                     case "Sweden76":
-                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetSweden76Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain, fragmentParam));
                         break;
                     case "Spain31":
-                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetSpain31Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain, fragmentParam));
                         break;
                     case "USA89":
-                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetUSA89Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain, fragmentParam));
                         break;
                     case "France41":
-                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetFrance41Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain, fragmentParam));
                         break;
                     case "Italy10":
-                        res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain));
+                        res.Append(ConfigGenerator.GetItaly10Config(user.Password, $"{user.Name}-{netOperator}", "sadaltest", ip, domain , fragmentParam));
                         break;
                     default:
                         res.Append("\n");
